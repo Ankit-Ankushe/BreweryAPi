@@ -22,7 +22,7 @@
 
         }
         #query{
-            margin-left: 26%;
+            margin-left: 25.5%;
             margin-top: 40px;
             width: 700px;
             padding: 1%;
@@ -32,6 +32,7 @@
             margin: auto;
             height: 300px;
             border: 1px solid red;
+            overflow-y: scroll;
         }
     </style>
 </head>
@@ -41,13 +42,15 @@
         <div><a href="./main.html">Home</a></div>
         <div><a href="./search.html">Search</a></div>
     </div>
-    <input type="text" id="query" placeholder="Enter" onclick="debouncing(getdata , 1000)">
+    <input type="text" id="query" placeholder="Enter" oninput="debouncing(getdata , 1000)">
     <div id="list"></div>
 </body>
 <script>
-    let name = document.getElementById("query").value
-    let url = `https://api.openbrewerydb.org/breweries?by_name=${name}`
+   
+    
    async function getdata(){
+    let name = document.getElementById("query").value;
+    let url = `https://api.openbrewerydb.org/breweries?by_name=${name}`;
        try{
            let data = await collectData(url);
        }
@@ -59,19 +62,27 @@
        try {
            let res = await fetch(url);
            let data =await  res.json();
-           console.log(data);
+           display(data);
        } catch (err) {
            console.log(err)
        }
    }
    let timer;
     function debouncing(func , delay){
-    //    if(timer){
-    //        clearTimeout(timer)
-    //    }
+       if(timer){
+           clearTimeout(timer)
+       }
        timer = setTimeout(function(){
            func();
        },delay);
+    }
+    function display(data){
+        data.forEach(beer => {
+            let name = document.createElement("p")
+            name.innerText = beer.name;
+
+            document.getElementById("list").append(name)
+        });
     }
 </script>
 </html>

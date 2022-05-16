@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <style>
+        #navBar {
+            height: 50px;
+            display: flex;
+            justify-content: space-evenly;
+            border: 1px solid red;
+            margin: auto;
+            box-shadow: rgba(3, 102, 214, 0.3) 0px 0px 0px 3px;
+        }
+
+        #navBar>div {
+            margin: auto;
+            font-size: 20px;
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+
+        }
+
+        table {
+            margin-top: 50px;
+        }
+
+        td {
+            padding: 1%;
+            width: 1%;
+        }
+
+        thead {
+            border: 1px solid red;
+            font-size: 30px;
+        }
+
+        tr,
+        td {
+            border: 1px solid black;
+        }
+        button{
+            background-color: rgba(10, 132, 208, 0.549);
+            font-size: 14px;
+            color: black;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="navBar">
+        <div>Brewery</div>
+        <div><a href="./main.html">Home</a></div>
+        <div><a href="./search.html">Search</a></div>
+    </div>
+    <!-- name, brewery_type, city, state -->
+    <table>
+        <thead>
+            <td>
+                <b>name</b>
+            </td>
+            <td>
+                <b>brewery_type</b>
+            </td>
+            <td>
+                <b>city</b>
+            </td>
+            <td>
+                <b>state</b>
+            </td>
+            <td>
+                <b>select</b>
+            </td>
+
+        </thead>
+        <tbody id="table">
+
+        </tbody>
+
+    </table>
+</body>
+<script>
+
+    let url = "https://api.openbrewerydb.org/breweries"
+    async function fetchAnddisplay() {
+        try {
+            let data = getdata();
+        }
+        catch (err) {
+            console.log(err);
+        }
+
+    }
+    async function getdata() {
+        try {
+            let res = await fetch(url);
+            let data = await res.json();
+            printData(data);
+        }
+        catch (err) {
+            console.log(err)
+        }
+    }
+    function printData(breweries) {
+        let table = document.getElementById("table");
+        breweries.forEach(beer => {
+            let row = document.createElement("tr")
+            let colname = document.createElement("td");
+            colname.innerText = beer.name;
+
+            let coltype = document.createElement("td");
+            coltype.innerText = beer.brewery_type;
+
+            let colcity = document.createElement("td");
+            colcity.innerText = beer.city;
+
+            let colstate = document.createElement("td");
+            colstate.innerText = beer.state;
+
+            let colbutton = document.createElement("td")
+            let button = document.createElement("button");
+            button.innerText = beer.name;
+            button.addEventListener("click" , function(){
+                console.log(beer.name)
+              localStorage.setItem("selectedBeer" , JSON.stringify(beer.id));
+              window.location.href = "indiBrewery.html"
+            })
+            colbutton.append(button);
+
+
+            table.append(row, colname, coltype, colcity, colstate,colbutton);
+        });
+    }
+    fetchAnddisplay();
+</script>
+
+</html>

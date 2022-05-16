@@ -1,0 +1,11 @@
+#query{
+    padding: 1%;
+    width: 500px;
+    margin-left: 32.5%;
+}
+#itemsSearched{
+    margin: auto;
+    height: 300px;
+    width: 530px;
+    border: 1px solid red;
+}

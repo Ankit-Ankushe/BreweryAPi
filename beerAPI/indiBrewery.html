@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brewery</title>
+    <style>
+        #navBar {
+            height: 50px;
+            display: flex;
+            justify-content: space-evenly;
+            border: 1px solid red;
+            margin: auto;
+            box-shadow: rgba(3, 102, 214, 0.3) 0px 0px 0px 3px;
+        }
+
+        #navBar>div {
+            margin: auto;
+            font-size: 20px;
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+
+        }
+        #card{
+            margin-left:10%;
+            margin-top: 100px;
+            border: 1px solid red;
+            height: auto;
+            width: 300px;
+            text-align: center;
+            font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+            box-shadow: rgba(17, 128, 255, 0.493) 0px 0px 0px 3px;
+        }
+    </style>
+</head>
+<body>
+    <div id="navBar">
+        <div>Brewery</div>
+        <div><a href="./main.html">Home</a></div>
+        <div><a href="./search.html">Search</a></div>
+    </div>
+    <div id="card"></div>
+</body>
+<script>
+   var beerid =  JSON.parse(localStorage.getItem("selectedBeer"));
+   let url = `https://api.openbrewerydb.org/breweries/${beerid}`
+   async function getdata(){
+        try{
+           let data =  await collectData(url);
+        }
+        catch(err){
+            console.log(err)
+        }
+   }
+   async function collectData(url){
+       try{
+           let res = await fetch(url)
+           let data = await res.json();
+           displayBeer(data);
+       }
+       catch(err){
+           console.log(err);
+       }
+   }
+   function displayBeer(data){
+    //    let card = document.createElement("div")
+       let name = document.createElement("h3")
+       name.innerText ="Name: " + data.name;
+
+       let type = document.createElement("p")
+       type.innerText ="Type: " +data.brewery_type;
+
+       let country = document.createElement("p")
+       country.innerText ="Country: " +data.country;
+
+       let state = document.createElement("p")
+       state.innerText ="State: "+ data.state;
+
+       let city = document.createElement("p");
+       city.innerText ="City: "+ data.city;
+       document.getElementById("card").append(name,type,country,state,city)
+   }
+   getdata()
+</script>
+</html>

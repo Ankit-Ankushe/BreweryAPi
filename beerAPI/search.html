@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Brewery</title>
+    <style>
+         #navBar {
+            height: 50px;
+            display: flex;
+            justify-content: space-evenly;
+            border: 1px solid red;
+            margin: auto;
+            box-shadow: rgba(3, 102, 214, 0.3) 0px 0px 0px 3px;
+        }
+
+        #navBar>div {
+            margin: auto;
+            font-size: 20px;
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+
+        }
+        #query{
+            margin-left: 26%;
+            margin-top: 40px;
+            width: 700px;
+            padding: 1%;
+        }
+        #list{
+            width: 730px;
+            margin: auto;
+            height: 300px;
+            border: 1px solid red;
+        }
+    </style>
+</head>
+<body>
+    <div id="navBar">
+        <div>Brewery</div>
+        <div><a href="./main.html">Home</a></div>
+        <div><a href="./search.html">Search</a></div>
+    </div>
+    <input type="text" id="query" placeholder="Enter" onclick="debouncing(getdata , 1000)">
+    <div id="list"></div>
+</body>
+<script>
+    let name = document.getElementById("query").value
+    let url = `https://api.openbrewerydb.org/breweries?by_name=${name}`
+   async function getdata(){
+       try{
+           let data = await collectData(url);
+       }
+       catch(err){
+           console.log(err)
+       }
+   }
+   async function collectData(url){
+       try {
+           let res = await fetch(url);
+           let data =await  res.json();
+           console.log(data);
+       } catch (err) {
+           console.log(err)
+       }
+   }
+   let timer;
+    function debouncing(func , delay){
+    //    if(timer){
+    //        clearTimeout(timer)
+    //    }
+       timer = setTimeout(function(){
+           func();
+       },delay);
+    }
+</script>
+</html>

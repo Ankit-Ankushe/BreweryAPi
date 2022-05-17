@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Search Brewery</title>
     <style>
+           *{
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        }
          #navBar {
             height: 50px;
             display: flex;
@@ -22,17 +25,42 @@
 
         }
         #query{
-            margin-left: 25.5%;
+            margin-left: 26%;
             margin-top: 40px;
-            width: 700px;
+            width: 690px;
             padding: 1%;
         }
         #list{
             width: 730px;
             margin: auto;
             height: 300px;
-            border: 1px solid red;
+            border: 1px solid #cecece;
             overflow-y: scroll;
+            padding: 1%;
+        }
+        table {
+            margin-top: 50px;
+        }
+
+        td {
+            padding: 1%;
+            width: 1%;
+        }
+
+        thead {
+            border: 1px solid red;
+            font-size: 30px;
+        }
+
+        tr,
+        td {
+            border: 1px solid black;
+        }
+        button{
+            background-color: rgba(10, 132, 208, 0.549);
+            font-size: 14px;
+            color: black;
+            font-weight: bold;
         }
     </style>
 </head>
@@ -44,6 +72,30 @@
     </div>
     <input type="text" id="query" placeholder="Enter" oninput="debouncing(getdata , 1000)">
     <div id="list"></div>
+    <table>
+        <thead>
+            <td>
+                <b>Name</b>
+            </td>
+            <td>
+                <b>Brewery_type</b>
+            </td>
+            <td>
+                <b>City</b>
+            </td>
+            <td>
+                <b>State</b>
+            </td>
+            <td>
+                <b>More Details</b>
+            </td>
+
+        </thead>
+        <tbody id="table">
+
+        </tbody>
+
+    </table>
 </body>
 <script>
    
@@ -62,7 +114,8 @@
        try {
            let res = await fetch(url);
            let data =await  res.json();
-           display(data);
+           displayList(data);
+           printData(data);
        } catch (err) {
            console.log(err)
        }
@@ -76,12 +129,44 @@
            func();
        },delay);
     }
-    function display(data){
+    function displayList(data){
+        document.getElementById("list").innerHTML =""
         data.forEach(beer => {
             let name = document.createElement("p")
             name.innerText = beer.name;
 
             document.getElementById("list").append(name)
+        });
+    }
+    function printData(breweries) {
+        let table = document.getElementById("table");
+        table.innerHTML = ""
+        breweries.forEach(beer => {
+            let row = document.createElement("tr")
+            let colname = document.createElement("td");
+            colname.innerText = beer.name;
+
+            let coltype = document.createElement("td");
+            coltype.innerText = beer.brewery_type;
+
+            let colcity = document.createElement("td");
+            colcity.innerText = beer.city;
+
+            let colstate = document.createElement("td");
+            colstate.innerText = beer.state;
+
+            let colbutton = document.createElement("td")
+            let button = document.createElement("button");
+            button.innerText = beer.name;
+            button.addEventListener("click" , function(){
+                console.log(beer.name)
+              localStorage.setItem("selectedBeer" , JSON.stringify(beer.id));
+              window.location.href = "indiBrewery.html"
+            })
+            colbutton.append(button);
+
+
+            table.append(row, colname, coltype, colcity, colstate,colbutton);
         });
     }
 </script>

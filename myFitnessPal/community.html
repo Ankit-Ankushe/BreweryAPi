@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        }
+
+        #navbar {
+            display: grid;
+            grid-template-columns: 5fr 1.5fr;
+            height: 50px;
+            gap: 10%;
+            color: #0066ee;
+            font-size: 16px;
+        }
+
+        #navbar>div {
+            height: 50px;
+        }
+
+        #div1 {
+            margin-left: 15%;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        #div1>div>img {
+            width: 200px;
+        }
+
+        #div2 {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-evenly;
+            margin-right: 20%;
+        }
+
+        #div2>div>img {
+            width: 40px;
+            height: 30px;
+        }
+
+        /* body top */
+        #top {
+            background-image:
+                linear-gradient(to bottom, rgba(255, 255, 0, 0.5), rgba(0, 0, 255, 0.5)),
+                url('https://www.myfitnesspal.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fhero-collage-top-large%402x.dcc5ac56.png&w=1200&q=75');
+            background-image: image-set();
+            height: 300px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #top>img {
+            width: 100%;
+            height: 100%;
+        }
+
+        #top>div {
+            margin: auto;
+            display: flex;
+        }
+
+        #top>div>select,
+        input {
+            padding: 1.5%;
+            border: 1px solid #eeee;
+            border-radius: 4px;
+        }
+
+        #top>div>input {
+            width: 700px;
+            font-size: 16px;
+        }
+
+        /* body bottom */
+        #bottom {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 20%;
+            margin: 100px;
+        }
+
+        #bottom>div {
+            height: auto;
+            color: #222628;
+        }
+
+        #announcement {
+            display: flex;
+            flex-direction: row;
+            font-size: 18px;
+            border: 1px solid #cecece;
+        }
+
+        #announcement>p>a {
+            text-decoration: none;
+            color: #222628;
+            font-size: 20px;
+        }
+
+        #announcement>p>a:hover {
+            color: #0066ee;
+        }
+
+        #announcement>img {
+            width: 50px;
+            height: 50px;
+            border-radius: 100px;
+        }
+        button{
+            background-color: #0066ee;
+            color: white;
+            font-size: 20px;
+            font-weight: bold;
+            padding: 4%;
+            border-radius: 90px;
+            border: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="navbar">
+        <div id="div1">
+            <div><img src="https://us.v-cdn.net/6024397/uploads/RP38WAYG9BJD/mfp-wordmark-indigo-tm.png" alt=""></div>
+            <div>Category</div>
+            <div>Discussion</div>
+            <div>Group</div>
+            <div>Blog</div>
+            <div>Find Members</div>
+            <div>Invite Friends</div>
+        </div>
+        <div id="div2">
+            <div><img src="https://tse2.mm.bing.net/th?id=OIP.qhTqTETrrY7vd1i_VjLdJgAAAA&pid=Api&P=0&w=156&h=156"></div>
+            <div><img src="https://tse2.explicit.bing.net/th?id=OIP.oqLxzCWGixJMOdpHF40uggHaHa&pid=Api&P=0&w=169&h=169">
+            </div>
+            <div><img src="https://wbecs.com/wbecs20/wp-content/themes/wbecs20/assets/img/membersarea/user_icon1.png">
+            </div>
+        </div>
+    </div>
+
+    <!-- body top -->
+    <div id="top">
+        <div>
+            <h1>MyFitnessPal Community</h1>
+        </div>
+        <div>
+            <select>
+                <option value="MyFitnessPal.com">MyFitnessPal.</option>
+                <option value="everywhere">everywhere</option>
+            </select>
+            <input type="text" placeholder="search">
+        </div>
+    </div>
+
+    <!-- body bottom -->
+    <div id="bottom">
+        <div>
+            <h2>Announcements</h2>
+            <div id="announcement">
+                <img
+                    src="https://dakd0cjsv8wfa.cloudfront.net/images/photos/user/79fe/0da5/eefc/32d7/73d0/d783/c86c/344777ca974551c66090cb351af9438269cb.jpg">
+                <p><a href="./newsAndAnouncement.html">MyFitnessPal is looking for RD’s, Nutritionists and Personal
+                        Trainers that use MyFitnessPal!</a>
+                    <br>
+                    Are you a personal trainer, nutritionist, or Registered Dietician that uses MFP with your clients?
+                    We’d love to talk to you about your experience using MyFitnessPal and possibly
+                </p>
+            </div>
+            <h2>Health, Wellness and Goals</h2>
+            <hr>
+            <h3>Introduce Yourself</h3>
+            <p>If you're new to MyFitnessPal please post a message here and say hello!</p>
+            <hr>
+
+            <h3>Getting Started</h3>
+            <p>Get help and support with starting your MyFitnessPal journey.</p>
+            <hr>
+
+            <h3>Health and Weight Loss</h3>
+            <p>Ask questions and get help on anything health and weight loss related.</p>
+            <hr>
+
+            <h3>Food and Nutrition</h3>
+            <p>Post and share tips, nutritional advice, discuss ways of eating and more.</p>
+            <hr>
+
+            <h3>Recipes</h3>
+            <p>Share your favorite recipes and healthy cooking tips</p>
+            <hr>
+            <h3>Fitness and Exercise</h3>
+            <p>Share fitness tips and exercise suggestions with other MyFitnessPal members.</p>
+            <hr>
+            <h3>Sleep, Mindfulness and Overall Wellness</h3>
+            <p>A place to discuss broader wellness themes like sleep, meditation, mindfulness and overall wellness.</p>
+            <hr>
+            <h3>Goal: Maintaining Weight</h3>
+            <p>For those using MyFitnessPal to maintain their current weight.</p>
+            <hr>
+            <h3>Goal: Gaining Weight and Body Buildin</h3>
+            <p>For those using MyFitnessPal with the purpose of gaining weight and body building.</p>
+            <hr>
+            <h3>Success Stories</h3>
+            <p>Share your success story and celebrate your victories big and small! Every small win counts.</p>
+            <hr>
+            <h3>Motivation and Support</h3>
+            <p>You are not alone! Get motivational help and support here from other MyFitnessPal members.</p>
+            <hr>
+            <h3>
+                Challenges
+            </h3>
+            <p> For those looking to start or join a new challenge.</p>
+            <hr>
+            <h3>Debate Club
+            </h3>
+            <p>Discuss highly debated health and fitness topics.</p>
+            <hr>
+            <h2>Social Corner</h2>
+            <hr>
+            <h3>Chit-Chat
+            </h3>
+            <p>Shoot the breeze & chat with members.</p>
+            <hr>
+            <h3>
+                Fun and Games
+            </h3>
+            <p>Play a game or share a joke.</p>
+            <hr>
+            <h2>MyFitnessPal Information</h2>
+            <hr>
+            <h3>News and Announcements
+            </h3>
+            <p>Updates and important announcements from the MyFitnessPal team.</p>
+            <hr>
+            <h3>Feature Suggestions and Ideas
+            </h3>
+            <p>Have a great idea? Share your feature suggestions and app improvement ideas here.</p>
+            <hr>
+            <h3>MyFitnessPal Tech Support Questions
+            </h3>
+            <p> Having trouble with MyFitnessPal? Get help from other members here.</p>
+            <hr>
+        </div>
+        <div id="rightDiv">
+            <button>+  New Post</button>
+            <div>
+                <h4>Quick Links</h4>
+                <div id="quickLinks">
+                    <p>Categories</p>
+                    <p>Recent Discussions</p>
+                    <p>Groups</p>
+                    <p>My Groups</p>
+                    <p> My Bookmarks </p>
+                    <p>My Discussions</p>
+                    <p>My Drafts</p>
+                    <p>Community Guidelines</p>
+                </div>
+            </div>
+            <h4>Categories</h4>
+            <p>All Categories</p>
+            <h4>Health, Wellness and Goals</h4>
+            <p>Introduce Yourself</p>
+            <p>Getting Started</p>
+            <p>Health and Weight Loss</p>
+            <p>Food and Nutrition</p>
+            <p>Recipes</p>
+            <p>Fitness and Exercise</p>
+            <p>Sleep, Mindfulness and Overall Wellness</p>
+            <p>Goal: Maintaining Weight</p>
+            <p>Goal: Gaining Weight and Body Building</p>
+            <p>Success Stories</p>
+            <p>Motivation and Support</p>
+            <p>Challenges</p>
+            <p>Debate Club</p>
+            <h4>Social Corner</h4>
+        </div>
+    </div>
+</body>
+
+</html>
